@@ -2,8 +2,6 @@ package com.us.example.service;
 
 import java.util.Map;
 
-import com.us.example.bean.User;
-
 /**
  * The Interface UserService.
  */
