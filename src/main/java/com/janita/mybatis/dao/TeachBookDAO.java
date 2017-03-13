@@ -1,6 +1,6 @@
-package com.us.example.dao;
+package com.janita.mybatis.dao;
 
-import com.us.example.bean.TeachBook;
+import com.janita.mybatis.bean.TeachBook;
 
 import java.util.List;
 
@@ -8,6 +8,7 @@ import java.util.List;
  * Created by com.us.example.MybatisCodeGenerate on 2017-03-12
  */
 public interface TeachBookDAO {
+
     int deleteByPrimaryKey(Integer bookId);
 
     void insert(TeachBook record);

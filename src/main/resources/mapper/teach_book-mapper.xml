@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.us.example.dao.TeachBookDAO">
-    <resultMap id="BaseResultMap" type="com.us.example.bean.TeachBook">
+<mapper namespace="com.janita.mybatis.dao.TeachBookDAO">
+    <resultMap id="BaseResultMap" type="com.janita.mybatis.bean.TeachBook">
         <id column="book_id" property="bookId" jdbcType="INTEGER"/>
         <result column="book_name" property="bookName" jdbcType="VARCHAR"/>
         <result column="publisher" property="publisher" jdbcType="VARCHAR"/>
@@ -9,16 +9,16 @@
     <sql id="SELECT_All_Column">
         SELECT book_id, book_name, publisher
     </sql>
-    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.us.example.bean.TeachBook">
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.janita.mybatis.bean.TeachBook">
         SELECT *
         FROM teach_book
         WHERE book_id = #{bookId,jdbcType=INTEGER}
     </select>
-    <delete id="deleteByPrimaryKey" parameterType="com.us.example.bean.TeachBook">
+    <delete id="deleteByPrimaryKey" parameterType="com.janita.mybatis.bean.TeachBook">
         DELETE FROM teach_book
         WHERE book_id = #{bookId,jdbcType=INTEGER}
     </delete>
-    <insert id="insert" parameterType="com.us.example.bean.TeachBook">
+    <insert id="insert" parameterType="com.janita.mybatis.bean.TeachBook">
         INSERT INTO teach_book ( book_name, 
           publisher )
         VALUES ( #{bookName,jdbcType=VARCHAR}, 
@@ -27,7 +27,7 @@
             SELECT LAST_INSERT_ID() AS bookId
         </selectKey>
     </insert>
-    <insert id="insertSelective" parameterType="com.us.example.bean.TeachBook">
+    <insert id="insertSelective" parameterType="com.janita.mybatis.bean.TeachBook">
         INSERT INTO teach_book
         <trim prefix="(" suffixOverrides="," suffix=")">
             <if test="bookName != null">
@@ -61,7 +61,7 @@
             )
         </foreach>
     </insert>
-    <update id="updateByPrimaryKeySelective" parameterType="com.us.example.bean.TeachBook">
+    <update id="updateByPrimaryKeySelective" parameterType="com.janita.mybatis.bean.TeachBook">
         UPDATE teach_book
         <set>
             <if test="bookName != null">
@@ -73,7 +73,7 @@
         </set>
         WHERE book_id = #{bookId,jdbcType=INTEGER}
     </update>
-    <update id="updateByPrimaryKey" parameterType="com.us.example.bean.TeachBook">
+    <update id="updateByPrimaryKey" parameterType="com.janita.mybatis.bean.TeachBook">
         UPDATE teach_book
         SET book_name = #{bookName,jdbcType=VARCHAR},
             publisher = #{publisher,jdbcType=VARCHAR}

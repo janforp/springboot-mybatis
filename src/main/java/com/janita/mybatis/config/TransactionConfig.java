@@ -1,4 +1,4 @@
-package com.us.example.config;
+package com.janita.mybatis.config;
 
 import javax.sql.DataSource;
 

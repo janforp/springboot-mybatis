@@ -1,4 +1,4 @@
-package com.us.example.config;
+package com.janita.mybatis.config;
 
 import com.alibaba.druid.pool.DruidDataSource;
 import org.slf4j.Logger;

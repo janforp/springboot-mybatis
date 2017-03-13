@@ -1,4 +1,4 @@
-package com.us.example;
+package com.janita.mybatis;
 
 import com.alibaba.druid.pool.DruidDataSource;
 import org.junit.Test;
@@ -22,19 +22,19 @@ import java.util.regex.Pattern;
 /**
  * 生成一张表的Modal / Dao / DaoImpl /sql**-mapper.xml
  *
- * @Author : wuqiang
+ * @Author : Janita
  */
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class MybatisCodeGenerate {
     // -custom
-    private static String[] tableNames = new String[]{"teach_book"};
+    private static String[] tableNames = new String[]{"user"};
     // 程序会自动找到basePath
     private static String basePath = null;
 
     private static Logger log = LoggerFactory.getLogger(MybatisCodeGenerate.class);
 
-    private static final String DAO_PACKAGE = "com.us.example.dao" ;
+    private static final String DAO_PACKAGE = "com.janita.mybatis.dao" ;
 
     @Autowired
     private DruidDataSource dataSource;
@@ -76,8 +76,8 @@ public class MybatisCodeGenerate {
         String sqlmapBasePath = "src/main/resources/mapper/";
         String schema = "test";
         String fileCharset = "utf-8";
-        String modalPackage = "com.us.example.bean";
-        String daoPackage = "com.us.example.dao";
+        String modalPackage = "com.janita.mybatis.bean";
+        String daoPackage = "com.janita.mybatis.dao";
 //        String daoImplPackage = "com.hongbao.api.dao.impl";
         String modalFilePath;
         String daoFilePath;

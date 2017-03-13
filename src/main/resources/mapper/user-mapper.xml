@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.janita.mybatis.dao.UserDAO">
+    <resultMap id="BaseResultMap" type="com.janita.mybatis.bean.User">
+        <id column="user_id" property="userId" jdbcType="BIGINT"/>
+        <result column="age" property="age" jdbcType="INTEGER"/>
+        <result column="user_name" property="userName" jdbcType="VARCHAR"/>
+    </resultMap>
+    <sql id="SELECT_All_Column">
+        SELECT user_id, age, user_name
+    </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.janita.mybatis.bean.User">
+        SELECT *
+        FROM user
+        WHERE user_id = #{userId,jdbcType=BIGINT}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="com.janita.mybatis.bean.User">
+        DELETE FROM user
+        WHERE user_id = #{userId,jdbcType=BIGINT}
+    </delete>
+    <insert id="insert" parameterType="com.janita.mybatis.bean.User">
+        INSERT INTO user ( age, 
+          user_name )
+        VALUES ( #{age,jdbcType=INTEGER}, 
+          #{userName,jdbcType=VARCHAR} )
+        <selectKey keyProperty="userId" resultType="long">
+            SELECT LAST_INSERT_ID() AS userId
+        </selectKey>
+    </insert>
+    <insert id="insertSelective" parameterType="com.janita.mybatis.bean.User">
+        INSERT INTO user
+        <trim prefix="(" suffixOverrides="," suffix=")">
+            <if test="age != null">
+                age,
+            </if>
+            <if test="userName != null">
+                user_name,
+            </if>
+        </trim>
+        VALUES
+        <trim prefix="(" suffixOverrides="," suffix=")">
+            <if test="age != null">
+                #{age,jdbcType=INTEGER},
+            </if>
+            <if test="userName != null">
+                #{userName,jdbcType=VARCHAR},
+            </if>
+        </trim>
+        <selectKey keyProperty="userId" resultType="long">
+            SELECT LAST_INSERT_ID() AS userId
+        </selectKey>
+    </insert>
+    <insert id="insertBatch" parameterType="java.util.List">
+        INSERT INTO user ( age, 
+          user_name )
+        VALUES
+        <foreach collection="list" item="item" index="index" separator="," >
+            (
+            #{item.age,jdbcType=INTEGER}, 
+            #{item.userName,jdbcType=VARCHAR}
+            )
+        </foreach>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.janita.mybatis.bean.User">
+        UPDATE user
+        <set>
+            <if test="age != null">
+                age = #{age,jdbcType=INTEGER},
+            </if>
+            <if test="userName != null">
+                user_name = #{userName,jdbcType=VARCHAR},
+            </if>
+        </set>
+        WHERE user_id = #{userId,jdbcType=BIGINT}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.janita.mybatis.bean.User">
+        UPDATE user
+        SET age = #{age,jdbcType=INTEGER},
+            user_name = #{userName,jdbcType=VARCHAR}
+        WHERE user_id = #{userId,jdbcType=BIGINT}
+    </update>
+</mapper>

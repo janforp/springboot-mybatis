@@ -1,4 +1,4 @@
-package com.us.example.config;
+package com.janita.mybatis.config;
 import javax.sql.DataSource;
 
 import org.mybatis.spring.SqlSessionFactoryBean;
@@ -8,6 +8,10 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
+
+/**
+ * Created by Janita on 2017/3/13 0013
+ */
 @Configuration
 @ComponentScan
 public class MyBatisConfig {
