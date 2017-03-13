@@ -10,7 +10,7 @@
         SELECT book_id, book_name, publisher
     </sql>
     <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.us.example.bean.TeachBook">
-        <include refid="teach_book.SELECT_All_Column"/>
+        SELECT *
         FROM teach_book
         WHERE book_id = #{bookId,jdbcType=INTEGER}
     </select>

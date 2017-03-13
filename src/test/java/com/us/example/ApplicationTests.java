@@ -48,9 +48,9 @@ public class ApplicationTests {
     @Test
     public void testInsert(){
         Member member = new Member();
-        member.setId("3");
+        member.setId("4");
         member.setPassword("zcccpasss");
-        member.setMemberName("NAME");
+        member.setMemberName("朱晨剑");
         member.setEmail("janforp@163.com");
         member.setTelephone("138776445454");
 

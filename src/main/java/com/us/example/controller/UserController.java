@@ -40,7 +40,8 @@ public class UserController {
     @ResponseBody
     public ResponseEntity<Object> list(HttpServletRequest request) {
         Map<String, Object> map = CommonUtil.getParameterMap(request);
-        return new ResponseEntity<>(userService.getList(map), HttpStatus.OK);
+//        return new ResponseEntity<>(userService.getList(map), HttpStatus.OK);
+        return null;
     }
 
 

@@ -626,7 +626,7 @@ public class MybatisCodeGenerate {
                     .append(
                             modalName)
                     .append("\">").append(newLine);
-            buf.append("        ").append("<include refid=\"" + tableName + ".SELECT_All_Column\"/>")
+            buf.append("        ").append("SELECT *")
                     .append(
                             newLine);
             buf.append("        ").append("FROM ").append(tableName).append(newLine);

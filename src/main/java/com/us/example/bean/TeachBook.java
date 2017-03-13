@@ -1,7 +1,7 @@
 package com.us.example.bean;
 
 /**
- * Created by com.us.example.MybatisCodeGenerate on 2017-03-12
+ * Created by com.us.example.MybatisCodeGenerate on 2017-03-13
  */
 public class TeachBook implements java.io.Serializable {
 
