@@ -2,8 +2,10 @@ package com.janita.mybatis.controller;
 
 
 import com.janita.mybatis.bean.TeachBook;
+import com.janita.mybatis.constant.Consts;
 import com.janita.mybatis.constant.ResultDto;
 import com.janita.mybatis.service.IBookService;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,16 +22,22 @@ import org.springframework.web.bind.annotation.RestController;
 public class BookController {
 
     @Autowired
-    private IBookService userService;
+    private IBookService bookService;
 
     @RequestMapping(value = "/addBook",method = RequestMethod.POST)
     public ResultDto createBook(@RequestBody TeachBook book){
-        userService.createBook(book);
+        bookService.createBook(book);
         return ResultDto.toSuccess("添加课本成功");
     }
 
     @RequestMapping(value = "/test",method = RequestMethod.GET)
     public ResultDto test(){
         return ResultDto.toSuccess("成功");
+    }
+
+    @RequestMapping(value = "/list",method = RequestMethod.GET)
+    @ApiOperation(value = "分页查询")
+    public ResultDto findBookList(Integer pageNum){
+        return ResultDto.toSuccess(bookService.getBookList(pageNum, Consts.pageSize));
     }
 }

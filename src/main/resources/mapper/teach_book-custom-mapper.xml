@@ -1,4 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.janita.mybatis.dao.TeachBookDAO">
+
+    <select id="bookList" resultType="com.janita.mybatis.bean.TeachBook">
+        SELECT book_id as bookId,book_name as bookName,publisher
+        FROM  teach_book
+        ORDER BY book_id
+    </select>
+
 </mapper>

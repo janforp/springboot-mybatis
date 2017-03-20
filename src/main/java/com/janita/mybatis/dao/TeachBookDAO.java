@@ -22,4 +22,6 @@ public interface TeachBookDAO {
     int updateByPrimaryKeySelective(TeachBook record);
 
     int updateByPrimaryKey(TeachBook record);
+
+    List<TeachBook> bookList();
 }

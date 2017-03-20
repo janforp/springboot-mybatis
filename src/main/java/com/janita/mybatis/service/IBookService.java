@@ -1,7 +1,10 @@
 package com.janita.mybatis.service;
 
 
+import com.github.pagehelper.PageInfo;
 import com.janita.mybatis.bean.TeachBook;
+
+import java.util.List;
 
 /**
  * The Interface IBookService.
@@ -11,4 +14,6 @@ public interface IBookService {
 
 
     void createBook(TeachBook book);
+
+    PageInfo<TeachBook> getBookList(Integer pageNum, Integer pageSize);
 }
