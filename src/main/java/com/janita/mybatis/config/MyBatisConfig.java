@@ -32,6 +32,10 @@ public class MyBatisConfig {
         return sessionFactory;
     }
 
+    /**
+     * 集成分页插件
+     * @return
+     */
     private PageHelper pageHelper(){
         PageHelper pageHelper = new PageHelper();
         Properties properties = new Properties();
