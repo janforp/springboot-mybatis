@@ -23,6 +23,9 @@ public class BookServiceImpl implements IBookService {
     @Override
     public void createBook(TeachBook book) {
         teachBookDAO.insert(book);
+        //TODD 注意：在类似dubbo的分布式项目中，若此接口时被远程调用的，则在远程的book中是没有此bookId的，只有此方法返回了该对象才能有id，因为
+        //远程跟本地是两个不同的对象
+        System.out.println("*******"+book.getBookId());
     }
 
     @Override
