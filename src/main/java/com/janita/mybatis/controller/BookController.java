@@ -43,6 +43,11 @@ public class BookController {
         return ResultDto.toSuccess(bookService.getBookList(pageNum, Consts.pageSize));
     }
 
+    /**
+     * 测试upsert方法
+     * @param book
+     * @return
+     */
     @RequestMapping(value = "/upsert",method = RequestMethod.POST)
     public ResultDto insertBatch(@RequestBody TeachBook book){
         return ResultDto.toSuccess(bookService.upsert(book));
