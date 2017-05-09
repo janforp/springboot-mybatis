@@ -36,4 +36,10 @@ public class BookServiceImpl implements IBookService {
 
         return pageInfo;
     }
+
+    @Override
+    public TeachBook upsert(TeachBook book) {
+        teachBookDAO.upsertBook(book);
+        return book;
+    }
 }

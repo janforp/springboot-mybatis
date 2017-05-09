@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 /**
  *
  * @ClassName BookController
@@ -39,5 +41,10 @@ public class BookController {
     @ApiOperation(value = "分页查询")
     public ResultDto findBookList(Integer pageNum){
         return ResultDto.toSuccess(bookService.getBookList(pageNum, Consts.pageSize));
+    }
+
+    @RequestMapping(value = "/upsert",method = RequestMethod.POST)
+    public ResultDto insertBatch(@RequestBody TeachBook book){
+        return ResultDto.toSuccess(bookService.upsert(book));
     }
 }

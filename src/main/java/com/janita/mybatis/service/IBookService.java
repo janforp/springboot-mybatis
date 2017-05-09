@@ -16,4 +16,6 @@ public interface IBookService {
     void createBook(TeachBook book);
 
     PageInfo<TeachBook> getBookList(Integer pageNum, Integer pageSize);
+
+    TeachBook upsert(TeachBook book);
 }

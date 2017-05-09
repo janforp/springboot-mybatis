@@ -8,4 +8,10 @@
         ORDER BY book_id
     </select>
 
+    <insert id="upsertBook" parameterType="com.janita.mybatis.bean.TeachBook">
+        INSERT INTO teach_book ( book_name,book_no, publisher )
+        VALUES ( #{bookName,jdbcType=VARCHAR},#{bookNo,jdbcType=VARCHAR}, #{publisher,jdbcType=VARCHAR} )
+        ON DUPLICATE KEY UPDATE book_name=VALUES(book_name),publisher=VALUES(publisher);
+    </insert>
+
 </mapper>

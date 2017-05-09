@@ -4,10 +4,11 @@
     <resultMap id="BaseResultMap" type="com.janita.mybatis.bean.TeachBook">
         <id column="book_id" property="bookId" jdbcType="INTEGER"/>
         <result column="book_name" property="bookName" jdbcType="VARCHAR"/>
+        <result column="book_no" property="bookNo" jdbcType="VARCHAR"/>
         <result column="publisher" property="publisher" jdbcType="VARCHAR"/>
     </resultMap>
     <sql id="SELECT_All_Column">
-        SELECT book_id, book_name, publisher
+        SELECT book_id, book_name, book_no, publisher
     </sql>
     <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.janita.mybatis.bean.TeachBook">
         SELECT *
@@ -20,9 +21,9 @@
     </delete>
     <insert id="insert" parameterType="com.janita.mybatis.bean.TeachBook">
         INSERT INTO teach_book ( book_name, 
-          publisher )
+          book_no, publisher )
         VALUES ( #{bookName,jdbcType=VARCHAR}, 
-          #{publisher,jdbcType=VARCHAR} )
+          #{bookNo,jdbcType=VARCHAR}, #{publisher,jdbcType=VARCHAR} )
         <selectKey keyProperty="bookId" resultType="int">
             SELECT LAST_INSERT_ID() AS bookId
         </selectKey>
@@ -33,6 +34,9 @@
             <if test="bookName != null">
                 book_name,
             </if>
+            <if test="bookNo != null">
+                book_no,
+            </if>
             <if test="publisher != null">
                 publisher,
             </if>
@@ -41,6 +45,9 @@
         <trim prefix="(" suffixOverrides="," suffix=")">
             <if test="bookName != null">
                 #{bookName,jdbcType=VARCHAR},
+            </if>
+            <if test="bookNo != null">
+                #{bookNo,jdbcType=VARCHAR},
             </if>
             <if test="publisher != null">
                 #{publisher,jdbcType=VARCHAR},
@@ -52,12 +59,12 @@
     </insert>
     <insert id="insertBatch" parameterType="java.util.List">
         INSERT INTO teach_book ( book_name, 
-          publisher )
+          book_no, publisher )
         VALUES
         <foreach collection="list" item="item" index="index" separator="," >
             (
             #{item.bookName,jdbcType=VARCHAR}, 
-            #{item.publisher,jdbcType=VARCHAR}
+            #{item.bookNo,jdbcType=VARCHAR}, #{item.publisher,jdbcType=VARCHAR}
             )
         </foreach>
     </insert>
@@ -66,6 +73,9 @@
         <set>
             <if test="bookName != null">
                 book_name = #{bookName,jdbcType=VARCHAR},
+            </if>
+            <if test="bookNo != null">
+                book_no = #{bookNo,jdbcType=VARCHAR},
             </if>
             <if test="publisher != null">
                 publisher = #{publisher,jdbcType=VARCHAR},
@@ -76,6 +86,7 @@
     <update id="updateByPrimaryKey" parameterType="com.janita.mybatis.bean.TeachBook">
         UPDATE teach_book
         SET book_name = #{bookName,jdbcType=VARCHAR},
+            book_no = #{bookNo,jdbcType=VARCHAR},
             publisher = #{publisher,jdbcType=VARCHAR}
         WHERE book_id = #{bookId,jdbcType=INTEGER}
     </update>

@@ -24,4 +24,6 @@ public interface TeachBookDAO {
     int updateByPrimaryKey(TeachBook record);
 
     List<TeachBook> bookList();
+
+    void upsertBook(TeachBook book);
 }
