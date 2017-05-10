@@ -18,4 +18,6 @@ public interface IBookService {
     PageInfo<TeachBook> getBookList(Integer pageNum, Integer pageSize);
 
     TeachBook upsert(TeachBook book);
+
+    String upsertBatch(List<TeachBook> books);
 }

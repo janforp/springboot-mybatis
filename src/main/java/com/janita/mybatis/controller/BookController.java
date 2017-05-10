@@ -7,10 +7,7 @@ import com.janita.mybatis.constant.ResultDto;
 import com.janita.mybatis.service.IBookService;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -21,6 +18,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping(value = "/book")
+@CrossOrigin
 public class BookController {
 
     @Autowired
@@ -49,7 +47,12 @@ public class BookController {
      * @return
      */
     @RequestMapping(value = "/upsert",method = RequestMethod.POST)
-    public ResultDto insertBatch(@RequestBody TeachBook book){
+    public ResultDto upsert(@RequestBody TeachBook book){
         return ResultDto.toSuccess(bookService.upsert(book));
+    }
+
+    @PostMapping("/batch")
+    public ResultDto upsertBatch(@RequestBody List<TeachBook> books){
+        return ResultDto.toSuccess(bookService.upsertBatch(books));
     }
 }

@@ -9,8 +9,17 @@
     </select>
 
     <insert id="upsertBook" parameterType="com.janita.mybatis.bean.TeachBook">
-        INSERT INTO teach_book ( book_name,book_no, publisher )
-        VALUES ( #{bookName,jdbcType=VARCHAR},#{bookNo,jdbcType=VARCHAR}, #{publisher,jdbcType=VARCHAR} )
+        INSERT INTO teach_book ( book_name,book_no,book_country,  publisher )
+        VALUES ( #{bookName,jdbcType=VARCHAR},#{bookNo,jdbcType=VARCHAR},#{bookCountry,jdbcType=VARCHAR}, #{publisher,jdbcType=VARCHAR} )
+        ON DUPLICATE KEY UPDATE book_name=VALUES(book_name),publisher=VALUES(publisher);
+    </insert>
+
+    <insert id="upsertBatch" parameterType="java.util.List">
+        INSERT INTO teach_book ( book_name,book_no, book_country, publisher )
+        VALUES
+        <foreach collection="list" item="item" index="index" separator="," >
+            (#{item.bookName,jdbcType=VARCHAR},#{item.bookNo,jdbcType=VARCHAR}, #{item.bookCountry,jdbcType=VARCHAR}, #{item.publisher,jdbcType=VARCHAR})
+        </foreach>
         ON DUPLICATE KEY UPDATE book_name=VALUES(book_name),publisher=VALUES(publisher);
     </insert>
 

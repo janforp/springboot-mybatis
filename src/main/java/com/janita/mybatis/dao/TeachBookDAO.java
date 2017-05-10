@@ -26,4 +26,6 @@ public interface TeachBookDAO {
     List<TeachBook> bookList();
 
     void upsertBook(TeachBook book);
+
+    void upsertBatch(List<TeachBook> books);
 }

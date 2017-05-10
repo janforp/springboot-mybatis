@@ -42,4 +42,10 @@ public class BookServiceImpl implements IBookService {
         teachBookDAO.upsertBook(book);
         return book;
     }
+
+    @Override
+    public String upsertBatch(List<TeachBook> books) {
+        teachBookDAO.upsertBatch(books);
+        return books.size()+"";
+    }
 }
