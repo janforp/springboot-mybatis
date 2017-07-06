@@ -5,10 +5,11 @@
         <id column="book_id" property="bookId" jdbcType="INTEGER"/>
         <result column="book_name" property="bookName" jdbcType="VARCHAR"/>
         <result column="book_no" property="bookNo" jdbcType="VARCHAR"/>
+        <result column="book_country" property="bookCountry" jdbcType="VARCHAR"/>
         <result column="publisher" property="publisher" jdbcType="VARCHAR"/>
     </resultMap>
     <sql id="SELECT_All_Column">
-        SELECT book_id, book_name, book_no, publisher
+        SELECT book_id, book_name, book_no, book_country, publisher
     </sql>
     <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.janita.mybatis.bean.TeachBook">
         SELECT *
@@ -21,9 +22,9 @@
     </delete>
     <insert id="insert" parameterType="com.janita.mybatis.bean.TeachBook">
         INSERT INTO teach_book ( book_name, 
-          book_no, publisher )
+          book_no, book_country, publisher )
         VALUES ( #{bookName,jdbcType=VARCHAR}, 
-          #{bookNo,jdbcType=VARCHAR}, #{publisher,jdbcType=VARCHAR} )
+          #{bookNo,jdbcType=VARCHAR}, #{bookCountry,jdbcType=VARCHAR}, #{publisher,jdbcType=VARCHAR} )
         <selectKey keyProperty="bookId" resultType="int">
             SELECT LAST_INSERT_ID() AS bookId
         </selectKey>
@@ -37,6 +38,9 @@
             <if test="bookNo != null">
                 book_no,
             </if>
+            <if test="bookCountry != null">
+                book_country,
+            </if>
             <if test="publisher != null">
                 publisher,
             </if>
@@ -49,6 +53,9 @@
             <if test="bookNo != null">
                 #{bookNo,jdbcType=VARCHAR},
             </if>
+            <if test="bookCountry != null">
+                #{bookCountry,jdbcType=VARCHAR},
+            </if>
             <if test="publisher != null">
                 #{publisher,jdbcType=VARCHAR},
             </if>
@@ -59,12 +66,12 @@
     </insert>
     <insert id="insertBatch" parameterType="java.util.List">
         INSERT INTO teach_book ( book_name, 
-          book_no, publisher )
+          book_no, book_country, publisher )
         VALUES
         <foreach collection="list" item="item" index="index" separator="," >
             (
             #{item.bookName,jdbcType=VARCHAR}, 
-            #{item.bookNo,jdbcType=VARCHAR}, #{item.publisher,jdbcType=VARCHAR}
+            #{item.bookNo,jdbcType=VARCHAR}, #{item.bookCountry,jdbcType=VARCHAR}, #{item.publisher,jdbcType=VARCHAR}
             )
         </foreach>
     </insert>
@@ -77,6 +84,9 @@
             <if test="bookNo != null">
                 book_no = #{bookNo,jdbcType=VARCHAR},
             </if>
+            <if test="bookCountry != null">
+                book_country = #{bookCountry,jdbcType=VARCHAR},
+            </if>
             <if test="publisher != null">
                 publisher = #{publisher,jdbcType=VARCHAR},
             </if>
@@ -87,6 +97,7 @@
         UPDATE teach_book
         SET book_name = #{bookName,jdbcType=VARCHAR},
             book_no = #{bookNo,jdbcType=VARCHAR},
+            book_country = #{bookCountry,jdbcType=VARCHAR},
             publisher = #{publisher,jdbcType=VARCHAR}
         WHERE book_id = #{bookId,jdbcType=INTEGER}
     </update>

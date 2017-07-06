@@ -1,7 +1,7 @@
 package com.janita.mybatis.bean;
 
 /**
- * Created by com.janita.mybatis.MybatisCodeGenerate on 2017-05-09
+ * Created by com.janita.mybatis.MybatisCodeGenerate on 2017-05-10
  */
 public class TeachBook implements java.io.Serializable {
 
@@ -10,6 +10,7 @@ public class TeachBook implements java.io.Serializable {
     private Integer bookId;
     private String bookName;
     private String bookNo;
+    private String bookCountry;
     private String publisher;
 
     // Constructors
@@ -23,9 +24,10 @@ public class TeachBook implements java.io.Serializable {
     /**
      * full constructor
      */
-    public TeachBook(String bookName, String bookNo, String publisher) {
+    public TeachBook(String bookName, String bookNo, String bookCountry, String publisher) {
         this.bookName = bookName;
         this.bookNo = bookNo;
+        this.bookCountry = bookCountry;
         this.publisher = publisher;
     }
 
@@ -53,6 +55,14 @@ public class TeachBook implements java.io.Serializable {
 
     public void setBookNo(String bookNo) {
         this.bookNo = bookNo;
+    }
+
+    public String getBookCountry() {
+        return this.bookCountry;
+    }
+
+    public void setBookCountry(String bookCountry) {
+        this.bookCountry = bookCountry;
     }
 
     public String getPublisher() {

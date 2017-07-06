@@ -47,7 +47,12 @@ public class BookController {
      * @return
      */
     @RequestMapping(value = "/upsert",method = RequestMethod.POST)
-    public ResultDto insertBatch(@RequestBody TeachBook book){
+    public ResultDto upsert(@RequestBody TeachBook book){
         return ResultDto.toSuccess(bookService.upsert(book));
+    }
+
+    @PostMapping("/batch")
+    public ResultDto upsertBatch(@RequestBody List<TeachBook> books){
+        return ResultDto.toSuccess(bookService.upsertBatch(books));
     }
 }
